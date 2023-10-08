@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "knowledge-augmented-lm"
+version = "0.1.0"
+description = ""
+authors = ["solbi-choi <solbicho@usc.edu>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+openai = "^0.28.1"
+urllib3 = "<2.0"
+sentence-transformers = "^2.2.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
