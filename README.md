@@ -17,7 +17,8 @@ This repository documents the implementation of the referenced paper and subsequ
     ```sh
     > python src/app.py ${IN_FILE_PATH_NAME} --head ${NUM_QUESTIONS} --outfile ${OUT_FILE_PATH_NAME}
     ```
-    - `IN_FILE_PATH_NAME` : Path and name of an input file. The input file should be Json WebQSP datasets with SPARQL queries processed for Wikidata. Original WebQSP datasets contained queries for Freebase, requiring further preprocessing for entity/property mapping. Preprocessing script: `resources/preprocess.py`.
+    - `IN_FILE_PATH_NAME` : Path and name of an input file. The input file should be Json WebQSP datasets with SPARQL queries processed for Wikidata. Original WebQSP datasets contained queries for Freebase, requiring further preprocessing for entity/property mapping. 
+      - Preprocessing script: `resources/preprocess.py`.
     - `NUM_QUESTIONS` : The number of questions needed to be processed from the beginning. Default value is `None`, processing all the questions from the input file. 
     - `OUT_FILE_PATH_NAME` : Path and name of an output file. Default value is `./out.txt`
 
