@@ -13,7 +13,15 @@ This repository documents the implementation of the referenced paper and subsequ
     - To run the project program within the pre-defined environment, run `poetry run python ${PROGRAM_NAME}`.
     - To activate the virtual environment in a shell, run `poetry shell`.
 
-2. Run
+2. Configuration
+    - In order to use the OpenAI API, ensure that your API key is added to the `src/settings/config.py` file prior to running the program.
+        ```python
+        class Configuration:
+            OPEN_AI_API_KEY = "${KEY_SHOULD_BE_ADDED}"
+            OPEN_AI_MODEL_NAME = "gpt-3.5-turbo"
+        ```
+
+3. Run
     ```sh
     > python src/app.py ${IN_FILE_PATH_NAME} --head ${NUM_QUESTIONS} --outfile ${OUT_FILE_PATH_NAME}
     ```
