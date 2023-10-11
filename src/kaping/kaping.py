@@ -50,6 +50,7 @@ class Kaping:
         # 3. Generate a question using verbalizing and prompting
         prompt = self._generate_prompt(final_triples)
         logging.debug(f"prompt to ask: {prompt}")
+        # TODO: add question. 
 
         # 4. Ask LLM 
         response = self.llm.ask(prompt)
