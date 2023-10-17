@@ -3,6 +3,7 @@ name = "knowledge-augmented-lm"
 version = "0.1.0"
 description = ""
 authors = ["solbi-choi <solbicho@usc.edu>"]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
