@@ -23,7 +23,7 @@ This repository documents the implementation of the referenced paper and subsequ
 
 3. Run
     ```sh
-    > python src/app.py ${IN_FILE_PATH_NAME} --head ${NUM_QUESTIONS} --outfile ${OUT_FILE_PATH_NAME}
+    python src/app.py ${IN_FILE_PATH_NAME} --head ${NUM_QUESTIONS} --outfile ${OUT_FILE_PATH_NAME}
     ```
     - `IN_FILE_PATH_NAME` : Path and name of an input file. The input file should be Json WebQSP datasets with SPARQL queries processed for Wikidata. Original WebQSP datasets contained queries for Freebase, requiring further preprocessing for entity/property mapping. 
       - Preprocessing script: `resources/preprocess.py`.
@@ -32,5 +32,5 @@ This repository documents the implementation of the referenced paper and subsequ
 
     - example
       ```sh
-      > python src/app.py resources/WebQSP/data/WebQSP.train.processed.json --head 10
+      python src/app.py resources/WebQSP/data/WebQSP.train.processed.json --head 10
       ```
