@@ -21,6 +21,7 @@ def main(filename: str, head: int = None, outfile: str = "out.txt"):
             answer = app.process(data)  
             answers.append(answer)
             f.write(f"{data.id}\t{data.question}\t{answer}\n")
+            
 
     # 3. Evaluate the results
     logging.info(f"Evaluate the results")
@@ -34,4 +35,5 @@ if __name__ == '__main__':
     parser.add_argument("--outfile", type=str, default="out.txt")
 
     args = parser.parse_args()
+    logging.root.setLevel(logging.NOTSET)
     main(args.filename, args.head, args.outfile)
