@@ -1,5 +1,6 @@
 class KGEntity:
-    def __init__(self, name: str) -> None:
+    def __init__(self, id: str, name: str) -> None:
+        self.id = id
         self.name = name
 
     def __str__(self) -> str:
@@ -7,7 +8,8 @@ class KGEntity:
     
 
 class KGProperty:
-    def __init__(self, name: str) -> None:
+    def __init__(self, id: str, name: str) -> None:
+        self.id = id
         self.name = name
 
     def __str__(self) -> str:

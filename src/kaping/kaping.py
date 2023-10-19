@@ -32,14 +32,19 @@ class Kaping:
                 triples.append(Triple(entity, p, KGEntity(k_name)))
 
         return triples
-
+    
     def process(self, data: KGQAData) -> str:
         # 1. Fetch candidate triples from KG
-        logging.debug(f"process question: {data.question}")
-        knowledges: List[dict] = self.wikidata.query(data.sparql)
+        logging.debug(f"Question: {data.question}")
+
+        entities = self.wikidata.entity_linker(data.question)
+        logging.debug(f"Entities: {entities}")
+
+        knowledges: List[dict] = self.wikidata.query(entities)
+
+        triples: List[Triple] = self._build_triples()
         # TODO: handling the case where there is no fetched answer from KG.
-        triples: List[Triple] = self._build_triples(data.entity, data.properties, knowledges)
-        logging.debug(f"retrieved triples: {triples}")
+        logging.debug(f"Retrieved triples: {triples}")
 
         # 2. Reduce candidates by calculating embedding similarities.
         sorted_triples = sort_knowledges(data.question, self._verbalize(triples))
