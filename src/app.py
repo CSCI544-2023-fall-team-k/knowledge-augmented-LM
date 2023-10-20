@@ -1,4 +1,4 @@
-from kaping import Kaping
+from kaping import KAPING
 from src.dataset import WebQSP
 import argparse
 import logging
@@ -12,7 +12,7 @@ def main(filename: str, head: int = None, outfile: str = "out.txt"):
     # 2. Process KAPING per each question data
     logging.info(f"Start processing data")
     answers = []
-    app = Kaping()
+    app = KAPING()
 
     with open(outfile, 'w') as f:
         datasets = web_qsp.data if head is None else web_qsp.data[:head]
@@ -20,7 +20,8 @@ def main(filename: str, head: int = None, outfile: str = "out.txt"):
             # TODO: insert delay between each call(RateLimitError: Rate limit reached for default-gpt-3.5-turbo in organization org-esrvXzMVq3Ig0JF7IPOfPHmb on requests per min. Limit: 3 / min.)
             answer = app.process(data)  
             answers.append(answer)
-            f.write(f"{data.id}\t{data.question}\t{answer}\n")
+            f.write(f"{data.qid}\t{data.question}\t{answer}\n")
+            break
             
 
     # 3. Evaluate the results
@@ -35,5 +36,5 @@ if __name__ == '__main__':
     parser.add_argument("--outfile", type=str, default="out.txt")
 
     args = parser.parse_args()
-    logging.root.setLevel(logging.NOTSET)
+    logging.root.setLevel(logging.INFO)
     main(args.filename, args.head, args.outfile)
