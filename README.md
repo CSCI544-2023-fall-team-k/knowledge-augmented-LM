@@ -17,8 +17,9 @@ This repository documents the implementation of the referenced paper and subsequ
     - In order to use the OpenAI API, ensure that your API key is added to the `src/settings/config.py` file prior to running the program.
         ```python
         class Configuration:
-            OPEN_AI_API_KEY = "${KEY_SHOULD_BE_ADDED}"
-            OPEN_AI_MODEL_NAME = "gpt-3.5-turbo"
+            OPENAI_API_KEY = "${KEY_SHOULD_BE_ADDED}"
+            OPENAI_MODEL_NAME = "gpt-3.5-turbo"
+            EMBEDDING_MODEL_NAME = "intfloat/e5-large-v2"
         ```
 
 3. Run
@@ -32,5 +33,5 @@ This repository documents the implementation of the referenced paper and subsequ
 
     - example
       ```sh
-      python src/app.py resources/WebQSP/data/WebQSP.train.processed.json --head 10
+      python src/app.py resources/WebQSP/data/WebQSP.train.processed.json
       ```
