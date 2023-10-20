@@ -15,10 +15,10 @@ class KGProperty:
 
 
 class Triple: 
-    def __init__(self, head_entity: KGEntity, relation: KGProperty, tail_entity: KGEntity) -> None:
-        self.head_entity = head_entity
-        self.relation = relation
-        self.tail_entity = tail_entity
+    def __init__(self, head: KGEntity, rel: KGProperty, tail: KGEntity) -> None:
+        self.head = head
+        self.rel = rel
+        self.tail = tail
 
     def __str__(self) -> str:
-        return f"({self.head_entity}, {self.relation}, {self.tail_entity})"
+        return f"({self.head}, {self.rel}, {self.tail})"
