@@ -2,7 +2,7 @@ from sentence_transformers import SentenceTransformer, util
 from typing import List
 import logging
 
-MODEL_NAME = "all-mpnet-base-v2"
+MODEL_NAME = "intfloat/e5-large-v2"
 transformer = SentenceTransformer(MODEL_NAME)
 
 # Sort knowledges in similar order with query. 

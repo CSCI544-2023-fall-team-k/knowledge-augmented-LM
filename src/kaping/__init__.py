@@ -1,1 +1,1 @@
-from .kaping import Kaping
+from .kaping import KAPING
