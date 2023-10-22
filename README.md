@@ -22,8 +22,9 @@ To mitigate these limitations, we propose Knowledge Graph Prompting using Proced
     - In order to use the OpenAI API, ensure that your API key is added to the `src/settings/config.py` file prior to running the program.
         ```python
         class Configuration:
-            OPEN_AI_API_KEY = "${KEY_SHOULD_BE_ADDED}"
-            OPEN_AI_MODEL_NAME = "gpt-3.5-turbo"
+            OPENAI_API_KEY = "${KEY_SHOULD_BE_ADDED}"
+            OPENAI_MODEL_NAME = "gpt-3.5-turbo"
+            EMBEDDING_MODEL_NAME = "intfloat/e5-large-v2"
         ```
 
 3. Run
@@ -37,7 +38,7 @@ To mitigate these limitations, we propose Knowledge Graph Prompting using Proced
 
     - example
       ```sh
-      python src/app.py resources/WebQSP/data/WebQSP.train.processed.json --head 10
+      python src/app.py resources/WebQSP/data/WebQSP.train.processed.json
       ```
 # Reference
 - [Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering](https://browse.arxiv.org/pdf/2306.04136.pdf), by Jinheon Baek1, Alham Fikri Aji, Amir Saffari

@@ -18,11 +18,8 @@ class WebQSP(KGQADataSet):
 
                 # Use first parsed query only.
                 parse = question["Parses"][0]           
-                entity = KGEntity(parse["TopicEntityName"])
-                properties = [KGProperty(p_name) for p_name in parse["InferentialChain"]] if parse["InferentialChain"] else []
-                sparql = parse["Sparql"]
                 answers = [KGEntity(answer["EntityName"]) for answer in parse["Answers"]] if parse["Answers"] else []
-                datasets.append(KGQAData(question_id, raw_question, entity, properties, sparql, answers))
+                datasets.append(KGQAData(question_id, raw_question, answers))
 
         logging.info(f"number of parsed questions: {len(datasets)}")
         return datasets

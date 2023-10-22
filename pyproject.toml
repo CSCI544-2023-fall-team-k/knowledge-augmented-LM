@@ -6,10 +6,16 @@ authors = ["solbi-choi <solbicho@usc.edu>"]
 packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.13"
 openai = "^0.28.1"
 urllib3 = "<2.0"
 sentence-transformers = "^2.2.2"
+wikidataintegrator = "^0.9.30"
+scipy = "^1.11.3"
+rdflib-shim = "^1.0.3"
+en_core_web_md = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.7.0/en_core_web_md-3.7.0.tar.gz"}
+spacy-entity-linker = "^1.0.3"
+dspy-ai = "^2.0.4"
 
 [tool.poetry.dev-dependencies]
 
