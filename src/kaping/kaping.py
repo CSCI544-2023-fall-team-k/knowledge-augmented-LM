@@ -14,7 +14,7 @@ class KAPING(dspy.Module):
         dspy.settings.configure(lm=lm)
         self.kg = WikiData()
         self.retriever = Retriever(model_name=Config.EMBEDDING_MODEL_NAME, k=5)
-        self.generate_answer = dspy.ChainOfThought(GenerateAnswer)
+        self.generate_answer = dspy.Predict(GenerateAnswer)
 
     def _verbalize(self, triples: List[Triple]) -> List[str]:
         return [str((t.head.name, t.rel.name, t.tail.name)) for t in triples]
