@@ -24,9 +24,9 @@ This repository documents the implementation of the referenced paper and subsequ
 
 3. Run
     ```sh
-    python src/app.py --data ${DATA} --outfile ${OUT_FILE_PATH_NAME}
+    python src/app.py --data ${DATA} --outfile ${OUT_FILE_NAME}
     ```
-    - `DATA` : The dataset you will use. Two options: 'WebQSP' or 'mintaka'.
+    - `DATA` : The dataset you will use. Two options: `WebQSP` or `mintaka`.
     - `OUT_FILE_NAME` : The name of the output file. Default value is `evaluation_resultc.csv`
 
     - example
