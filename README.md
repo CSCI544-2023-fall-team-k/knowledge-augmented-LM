@@ -24,15 +24,12 @@ This repository documents the implementation of the referenced paper and subsequ
 
 3. Run
     ```sh
-    python src/app.py ${IN_FILE_PATH_NAME} ${DATA_TYPE} --head ${NUM_QUESTIONS} --outfile ${OUT_FILE_PATH_NAME}
+    python src/app.py --data ${DATA} --outfile ${OUT_FILE_PATH_NAME}
     ```
-    - `IN_FILE_PATH_NAME` : Path and name of an input file. The input file should be Json WebQSP datasets with SPARQL queries processed for Wikidata. Original WebQSP datasets contained queries for Freebase, requiring further preprocessing for entity/property mapping. 
-      - Preprocessing script: `resources/preprocess.py`.
-    - `DATA_TYPE` : The type of dataset you'd like to use. Two options: 'WebQSP' or 'mintaka'.
-    - `NUM_QUESTIONS` : The number of questions needed to be processed from the beginning. Default value is `None`, processing all the questions from the input file. 
-    - `OUT_FILE_PATH_NAME` : Path and name of an output file. Default value is `./out.txt`
+    - `DATA` : The dataset you will use. Two options: 'WebQSP' or 'mintaka'.
+    - `OUT_FILE_NAME` : The name of the output file. Default value is `evaluation_resultc.csv`
 
     - example
       ```sh
-      python src/app.py resources/WebQSP/data/WebQSP.train.processed.json
+      python src/app.py --data WebQSP --outfile evaluation_resultc.csv
       ```

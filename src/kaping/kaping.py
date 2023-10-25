@@ -35,7 +35,7 @@ class KAPING(dspy.Module):
         context = " ".join(retrieved_triples)
         answer = self.generate_answer(question=question, context=context).answer
 
-        return answer
+        return dspy.Prediction(answer=answer)
     
         # Might need dspy.Prediction when evaluation
         # return dspy.Prediction(answer=answer)
