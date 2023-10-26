@@ -10,7 +10,7 @@ class WebQSP(KGQADataSet):
     def load(self, path: str) -> List[KGQAData]:
         datasets: List[KGQAData] = []
 
-        with open(path) as f:
+        with open(path, encoding='utf-8') as f:
             json_dict = json.load(f)
             for question in json_dict["Questions"]:
                 question_id = question["QuestionId"]

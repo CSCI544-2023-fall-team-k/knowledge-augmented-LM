@@ -17,7 +17,7 @@ class Mintaka(KGQADataSet):
                 raw_question = mintaka_data["question"]
                                 
                 answer_data = mintaka_data["answer"]["answer"]                
-                answers = [KGEntity(answer["label"]["en"]) if type(answer) is dict else answer for answer in answer_data] if answer_data else []
+                answers = [KGEntity(answer["label"]["en"]) if type(answer) is dict else str(answer) for answer in answer_data] if answer_data else []
                 
                 datasets.append(KGQAData(question_id, raw_question, answers))
 
