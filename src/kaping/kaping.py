@@ -10,7 +10,7 @@ import logging
 class KAPING(dspy.Module):
     def __init__(self):
         super().__init__()
-        lm = dspy.OpenAI(model=Config.OPENAI_MODEL_NAME, api_key=Config.OPENAI_API_KEY, temperature=0.0)
+        lm = dspy.OpenAI(model=Config.OPENAI_MODEL_NAME, api_key=Config.OPENAI_API_KEY, temperature=0.0, request_timeout=120)
         dspy.settings.configure(lm=lm)
         self.kg = WikiData()
         self.retriever = Retriever(model_name=Config.EMBEDDING_MODEL_NAME, k=5)
@@ -23,15 +23,15 @@ class KAPING(dspy.Module):
         # 1. Fetch candidate triples from KG
         logging.info(f"Question: {question}")
         entities = self.kg.entity_linking(question)
-        #logging.info(f"Entities: {entities}")
+        logging.info(f"Entities: {entities}")
         matched_triples: List[Triple] = self.kg.query(entities)
-        # logging.info(f"Matched triples: {self._verbalize(matched_triples)}")
+        logging.info(f"Matched triples: {self._verbalize(matched_triples)}")
 
         # TODO: handling the case where there is no fetched answer from KG.
 
         # 2. Retrieve top-k candidates by calculating embedding similarities.
         retrieved_triples = self.retriever.retrieve(query=question, items=self._verbalize(matched_triples))
-        #logging.info(f"Retrieved triples: {retrieved_triples}")
+        logging.info(f"Retrieved triples: {retrieved_triples}")
         context = " ".join(retrieved_triples)
         answer = self.generate_answer(question=question, context=context).answer
 

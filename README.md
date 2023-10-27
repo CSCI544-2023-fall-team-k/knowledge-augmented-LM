@@ -24,12 +24,13 @@ This repository documents the implementation of the referenced paper and subsequ
 
 3. Run
     ```sh
-    python src/app.py --data ${DATA} --outfile ${OUT_FILE_NAME}
+    python src/app.py --data ${DATA} --outfile ${OUT_FILE_NAME} --num_test {NUM_TEST}
     ```
     - `DATA` : The dataset you will use. Two options: `WebQSP` or `mintaka`.
-    - `OUT_FILE_NAME` : The name of the output file. Default value is `evaluation_resultc.csv`
+    - `OUT_FILE_NAME` : The name of the output file. Default value is `evaluation_resultc.csv`.
+    - `NUM_TEST` : Number of samples to test. Default value is 500.
 
     - example
       ```sh
-      python src/app.py --data WebQSP --outfile evaluation_resultc.csv
+      python src/app.py --data WebQSP --outfile webqsp_results.csv --num_test 500
       ```

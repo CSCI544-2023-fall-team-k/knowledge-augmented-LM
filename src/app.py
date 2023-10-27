@@ -9,7 +9,7 @@ import logging
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-def main(data: str, outfile: str = "evaluation_result.csv"):
+def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500):
 
     if data.lower() == "WebQSP".lower():
         dataset = WebQSP(path="resources/WebQSP/data/WebQSP.test.processed.json")
@@ -26,7 +26,7 @@ def main(data: str, outfile: str = "evaluation_result.csv"):
     kaping = KAPING()
     dspy_dataset = []
 
-    for data in dataset.data:
+    for data in dataset.data[:num_test]:
         dspy_dataset.append(Example({'question':data.question, 'answer':[a.name if hasattr(a, 'name') else a for a in data.answers]}))
     dspy_dataset = [x.with_inputs('question') for x in dspy_dataset]
    
@@ -43,7 +43,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='Knowledge Augmented Language Model')
     parser.add_argument("--data", choices=['WebQSP', 'mintaka'], default='WebQSP')
     parser.add_argument("--outfile", type=str, default="evaluation_result.csv")
+    parser.add_argument("--num_test", type=int, default=500)
 
     args = parser.parse_args()
-    logging.root.setLevel(logging.INFO)
-    main(args.data, args.outfile)
+    #logging.root.setLevel(logging.INFO)
+    main(args.data, args.outfile, args.num_test)
