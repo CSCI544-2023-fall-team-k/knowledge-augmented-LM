@@ -23,7 +23,7 @@ class KAPING(dspy.Module):
         # 1. Fetch candidate triples from KG
         logging.info(f"Question: {question}")
         entities = self.kg.entity_linking(question)
-        logging.info(f"Entities: {entities}")
+        #logging.info(f"Entities: {entities}")
         matched_triples: List[Triple] = self.kg.query(entities)
         # logging.info(f"Matched triples: {self._verbalize(matched_triples)}")
 
@@ -31,13 +31,11 @@ class KAPING(dspy.Module):
 
         # 2. Retrieve top-k candidates by calculating embedding similarities.
         retrieved_triples = self.retriever.retrieve(query=question, items=self._verbalize(matched_triples))
-        logging.info(f"Retrieved triples: {retrieved_triples}")
+        #logging.info(f"Retrieved triples: {retrieved_triples}")
         context = " ".join(retrieved_triples)
         answer = self.generate_answer(question=question, context=context).answer
 
         return dspy.Prediction(answer=answer)
-    
-        # Might need dspy.Prediction when evaluation
-        # return dspy.Prediction(answer=answer)
+
 
 

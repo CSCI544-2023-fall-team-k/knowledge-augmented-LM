@@ -26,7 +26,7 @@ def main(data: str, outfile: str = "evaluation_result.csv"):
     kaping = KAPING()
     dspy_dataset = []
 
-    for data in dataset.data[:3]:
+    for data in dataset.data:
         dspy_dataset.append(Example({'question':data.question, 'answer':[a.name if hasattr(a, 'name') else a for a in data.answers]}))
     dspy_dataset = [x.with_inputs('question') for x in dspy_dataset]
    

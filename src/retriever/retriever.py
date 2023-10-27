@@ -8,8 +8,8 @@ class Retriever:
         self.k = k
 
     def retrieve(self, query: str, items: List[str]) -> List[str]:
-        query_embedding = self.model.encode(query)
-        item_embeddings = self.model.encode(items)
+        query_embedding = self.model.encode(query, show_progress_bar=False)
+        item_embeddings = self.model.encode(items, show_progress_bar=False)
         item_dict = {items[i]: item_embeddings[i] for i in range(len(items))}
         sorted_items = sorted(item_dict.items(), key=lambda x: util.dot_score(x[1], query_embedding), reverse=True)
         result = [i[0] for i in sorted_items]
