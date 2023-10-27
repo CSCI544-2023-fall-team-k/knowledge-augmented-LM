@@ -1,6 +1,7 @@
 import re
 import string
 import unicodedata
+import logging
 
 def normalize_text(s):
     s = unicodedata.normalize('NFD', s)
@@ -27,5 +28,6 @@ def em_score(prediction, ground_truth):
     return normalized_pred == normalized_gt
 
 def exact_matching(example, pred):
+    logging.info(f"Gold Answers: {example.answer} / Prediction: {pred.answer}")
     assert(type(example.answer) is list)
     return max(em_score(pred.answer, ans) for ans in example.answer)

@@ -15,10 +15,19 @@ class WebQSP(KGQADataSet):
             for question in json_dict["Questions"]:
                 question_id = question["QuestionId"]
                 raw_question = question["RawQuestion"]
-
-                # Use first parsed query only.
-                parse = question["Parses"][0]           
-                answers = [KGEntity(answer["EntityName"]) for answer in parse["Answers"]] if parse["Answers"] else []
+                parse = question["Parses"][0]
+                answers = []
+                if parse["Answers"]:
+                    for answer in parse["Answers"]:
+                        if answer["AnswerType"] == "Entity":
+                            answers.append(KGEntity(answer["EntityName"]))
+                        elif answer["AnswerType"] == "Value":
+                            answers.append(KGEntity(answer["AnswerArgument"]))
+                        else:
+                            logging.WARNING("No answer type supported")
+                            continue
+                else:
+                    continue
                 datasets.append(KGQAData(question_id, raw_question, answers))
 
         logging.info(f"number of parsed questions: {len(datasets)}")
