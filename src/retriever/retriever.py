@@ -7,10 +7,10 @@ class Retriever:
         self.model = SentenceTransformer(model_name)
         self.k = k
 
-    def retrieve(self, query: str, items: List[str]) -> List[str]:
+    def retrieve(self, query: str, candidates: List[str]) -> List[str]:
         query_embedding = self.model.encode(query, show_progress_bar=False)
-        item_embeddings = self.model.encode(items, show_progress_bar=False)
-        item_dict = {items[i]: item_embeddings[i] for i in range(len(items))}
-        sorted_items = sorted(item_dict.items(), key=lambda x: util.dot_score(x[1], query_embedding), reverse=True)
-        result = [i[0] for i in sorted_items]
+        candidate_embeddings = self.model.encode(candidates, show_progress_bar=False)
+        candidate_dict = {candidates[i]: candidate_embeddings[i] for i in range(len(candidates))}
+        sorted_candidates = sorted(candidate_dict.items(), key=lambda x: util.dot_score(x[1], query_embedding), reverse=True)
+        result = [i[0] for i in sorted_candidates]
         return result[:self.k]
