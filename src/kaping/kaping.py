@@ -20,21 +20,20 @@ class KAPING(dspy.Module):
         return [str((t.head.name, t.rel.name, t.tail.name)) for t in triples]
     
     def forward(self, question: str):
-        # 1. Fetch candidate triples from KG
         logging.info(f"Question: {question}")
+        # 1. Entity Linking: Extract entities in the question.
         entities = self.kg.entity_linking(question)
         logging.info(f"Entities: {entities}")
+        # 2. Triple Extraction: Extract triples connected to each entity.
         matched_triples: List[Triple] = self.kg.query(entities)
         logging.info(f"Matched triples: {self._verbalize(matched_triples)}")
-
-        # TODO: handling the case where there is no fetched answer from KG.
-
-        # 2. Retrieve top-k candidates by calculating embedding similarities.
-        retrieved_triples = self.retriever.retrieve(query=question, items=self._verbalize(matched_triples))
+        # 3. Candidate Retrieval: Retrieve top-k candidates from the extracted triples using semantic similarity between the question
+        candidates = self._verbalize(matched_triples)
+        retrieved_triples = self.retriever.retrieve(query=question, candidates=candidates)
         logging.info(f"Retrieved triples: {retrieved_triples}")
+        # 4. Answer Generation: Generate answer by prompting LLM with question and context, which is retrieved triples.
         context = " ".join(retrieved_triples)
         answer = self.generate_answer(question=question, context=context).answer
-
         return dspy.Prediction(answer=answer)
 
 
