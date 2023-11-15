@@ -1,5 +1,5 @@
 # Knowledge Graph Prompting using Procedural Reasoning
-This repository contains implementations on KAPPR. This work is done in CSCI544 Applied Natural Language Processing by Prof. Mohammad Rostami on Fall 2023.
+This repository contains implementations on KGPPR. This work is done in CSCI544 Applied Natural Language Processing by Prof. Mohammad Rostami on Fall 2023.
 
 # Motivation
 Although Retreival Augmented Generation (RAG) has become the standard of all the knowledge-augmented language modeling tasks, two main limitations exist. First, it requires massive data to train both the retriever and LM. Especially, fine-tuning pre-trained LM costs a lot of resources and is not desirable in real-world settings. Second, the method tries to solve questions in one-shot, where knowledge retriever and LM are used only once to solve the given question. However, for complex questions requiring multiple reasoning steps, a one-shot approach may be insufficient to provide accurate answers. 
