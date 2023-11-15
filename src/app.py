@@ -1,9 +1,9 @@
-from kaping import KAPING
+from kgppr import KGPPR
 from src.dataset import WebQSP
 from src.dataset import Mintaka
-from kaping.metrics import exact_matching
+from kgppr.metrics import exact_matching
 from dspy.primitives import Example
-from kaping.evaluate import Evaluate
+from kgppr.evaluate import Evaluate
 import argparse
 import logging
 import os
@@ -23,7 +23,7 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
         
     logging.info(f"Num questions: {len(dataset.data)}")
 
-    kaping = KAPING()
+    kgppr = KGPPR()
     dspy_dataset = []
 
     for data in dataset.data[:num_test]:
@@ -36,15 +36,15 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
     # TODO
     
     evaluate_on_gts = Evaluate(devset=dspy_dataset, outfile=outfile, num_threads=1, display_progress=True)
-    evaluation_result = evaluate_on_gts(kaping, metric=exact_matching)
+    evaluation_result = evaluate_on_gts(kgppr, metric=exact_matching)
 
 
 if __name__ == '__main__':    
     parser = argparse.ArgumentParser(prog='Knowledge Augmented Language Model')
     parser.add_argument("--data", choices=['WebQSP', 'mintaka'], default='WebQSP')
     parser.add_argument("--outfile", type=str, default="evaluation_result.csv")
-    parser.add_argument("--num_test", type=int, default=500)
+    parser.add_argument("--num_test", type=int, default=3)
 
     args = parser.parse_args()
-    #logging.root.setLevel(logging.INFO)
+    logging.root.setLevel(logging.INFO)
     main(args.data, args.outfile, args.num_test)
