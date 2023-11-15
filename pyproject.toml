@@ -2,7 +2,7 @@
 name = "knowledge-augmented-lm"
 version = "0.1.0"
 description = ""
-authors = ["solbi-choi <solbicho@usc.edu>"]
+authors = ["Dongwon Jung <dongwonj@usc.edu>", "solbi-choi <solbicho@usc.edu>"]
 packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
