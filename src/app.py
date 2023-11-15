@@ -43,7 +43,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='Knowledge Augmented Language Model')
     parser.add_argument("--data", choices=['WebQSP', 'mintaka'], default='WebQSP')
     parser.add_argument("--outfile", type=str, default="evaluation_result.csv")
-    parser.add_argument("--num_test", type=int, default=500)
+    parser.add_argument("--num_test", type=int, default=10)
 
     args = parser.parse_args()
     #logging.root.setLevel(logging.INFO)

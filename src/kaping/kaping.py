@@ -10,10 +10,10 @@ import logging
 class KAPING(dspy.Module):
     def __init__(self):
         super().__init__()
-        lm = dspy.OpenAI(model=Config.OPENAI_MODEL_NAME, api_key=Config.OPENAI_API_KEY, temperature=0.0, request_timeout=120)
+        lm = dspy.OpenAI(model=Config.OPENAI_MODEL_NAME, api_key=Config.OPENAI_API_KEY, temperature=0.0, request_timeout=30)
         dspy.settings.configure(lm=lm)
         self.kg = WikiData()
-        self.retriever = Retriever(model_name=Config.EMBEDDING_MODEL_NAME, k=5)
+        self.retriever = Retriever(query_encoder=Config.QUERY_ENCODER, passage_encoder=Config.PASSAGE_ENCODER, k=5)
         self.generate_answer = dspy.Predict(GenerateAnswer)
 
     def _verbalize(self, triples: List[Triple]) -> List[str]:
