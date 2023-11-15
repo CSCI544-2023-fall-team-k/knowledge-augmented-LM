@@ -15,7 +15,7 @@ class KGPPR(dspy.Module):
     def __init__(self):
         super().__init__()
         self.max_iter = 3
-        self.lm = dspy.OpenAI(model=Config.OPENAI_MODEL_NAME, api_key=Config.OPENAI_API_KEY, temperature=0.1, request_timeout=30)
+        self.lm = dspy.OpenAI(model=Config.OPENAI_MODEL_NAME, api_key=Config.OPENAI_API_KEY, temperature=0.0, request_timeout=30)
         dspy.settings.configure(lm=self.lm)
         self.kg = WikiData()
         self.retriever = Retriever(query_encoder=Config.QUERY_ENCODER, passage_encoder=Config.PASSAGE_ENCODER, k=5)

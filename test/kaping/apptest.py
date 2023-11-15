@@ -1,7 +1,7 @@
 import unittest
 import logging
 from src.dataset import WebQSP
-from src.kaping import Kaping
+from src.kgppr import Kaping
 
 logging.basicConfig(level=logging.DEBUG)
 
