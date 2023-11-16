@@ -26,19 +26,18 @@ To mitigate these limitations, we propose Knowledge Graph Prompting using Proced
             OPENAI_MODEL_NAME = "gpt-3.5-turbo"
             EMBEDDING_MODEL_NAME = "intfloat/e5-large-v2"
         ```
-
 3. Run
     ```sh
-    python src/app.py ${IN_FILE_PATH_NAME} --head ${NUM_QUESTIONS} --outfile ${OUT_FILE_PATH_NAME}
+    python src/app.py --data ${DATA} --outfile ${OUT_FILE_NAME} --num_test {NUM_TEST}
     ```
-    - `IN_FILE_PATH_NAME` : Path and name of an input file. The input file should be Json WebQSP datasets with SPARQL queries processed for Wikidata. Original WebQSP datasets contained queries for Freebase, requiring further preprocessing for entity/property mapping. 
-      - Preprocessing script: `resources/preprocess.py`.
-    - `NUM_QUESTIONS` : The number of questions needed to be processed from the beginning. Default value is `None`, processing all the questions from the input file. 
-    - `OUT_FILE_PATH_NAME` : Path and name of an output file. Default value is `./out.txt`
+    - `DATA` : The dataset you will use. Two options: `WebQSP`, `mintaka`, or `ComplexWebQ`.
+    - `OUT_FILE_NAME` : The name of the output file. Default value is `evaluation_resultc.csv`.
+    - `NUM_TEST` : Number of samples to test. Default value is 500.
 
     - example
       ```sh
-      python src/app.py resources/WebQSP/data/WebQSP.train.processed.json
+      python src/app.py --data WebQSP --outfile webqsp_results.csv --num_test 500
       ```
+      
 # Reference
 - [Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering](https://browse.arxiv.org/pdf/2306.04136.pdf), by Jinheon Baek1, Alham Fikri Aji, Amir Saffari
