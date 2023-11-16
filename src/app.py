@@ -1,6 +1,7 @@
 from kaping import KAPING
 from src.dataset import WebQSP
 from src.dataset import Mintaka
+from src.dataset import ComplexWebQ
 from kaping.metrics import exact_matching
 from dspy.primitives import Example
 from kaping.evaluate import Evaluate
@@ -17,8 +18,11 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
     elif data.lower() == "mintaka".lower():
         dataset = Mintaka(path="resources/mintaka/data/mintaka_test.json")
         logging.info(f"data = mintaka")
+    elif data.lower() == "ComplexWebQ".lower():
+        dataset = ComplexWebQ(path="resources/ComplexWebQuestions/ComplexWebQuestions_train.json")
+        logging.info(f"data = ComplexWebQ")
     else:
-        logging.info(f"Wrong data! It should be 'WebQSP' or 'mintaka'.")
+        logging.info(f"Wrong data! It should be 'WebQSP', 'mintaka', or 'ComplexWebQ'.")
         return
         
     logging.info(f"Num questions: {len(dataset.data)}")
@@ -41,7 +45,7 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
 
 if __name__ == '__main__':    
     parser = argparse.ArgumentParser(prog='Knowledge Augmented Language Model')
-    parser.add_argument("--data", choices=['WebQSP', 'mintaka'], default='WebQSP')
+    parser.add_argument("--data", choices=['WebQSP', 'mintaka', 'ComplexWebQ'], default='WebQSP')
     parser.add_argument("--outfile", type=str, default="evaluation_result.csv")
     parser.add_argument("--num_test", type=int, default=10)
 
