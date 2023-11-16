@@ -21,6 +21,10 @@ class ComplexWebQ(KGQADataSet):
                 if answer_data:
                     for answer in answer_data:
                         answers.append(KGEntity(answer["answer"]))
+                        # Assume that aliases are also answers.
+                        aliases = answer["aliases"]
+                        for alias in aliases:
+                            answers.append(KGEntity(alias))
                 else:
                     continue
                 datasets.append(KGQAData(question_id, raw_question, answers))
