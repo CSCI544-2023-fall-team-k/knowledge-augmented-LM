@@ -30,7 +30,7 @@ To mitigate these limitations, we propose Knowledge Graph Prompting using Proced
     ```sh
     python src/app.py --data ${DATA} --outfile ${OUT_FILE_NAME} --num_test {NUM_TEST}
     ```
-    - `DATA` : The dataset you will use. Two options: `WebQSP`, `mintaka`, or `ComplexWebQ`.
+    - `DATA` : You have three options for the dataset to use: `WebQSP`, `mintaka`, or `ComplexWebQ`.
     - `OUT_FILE_NAME` : The name of the output file. Default value is `evaluation_resultc.csv`.
     - `NUM_TEST` : Number of samples to test. Default value is 500.
 
