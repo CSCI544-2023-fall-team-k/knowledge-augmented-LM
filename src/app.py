@@ -34,7 +34,7 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
     seed_value = 40
 
     min_value = 0
-    max_value = 500
+    max_value = len(dataset.data)
 
     random.seed(seed_value)
     random_indexes = random.sample(range(min_value, max_value + 1), num_test)
