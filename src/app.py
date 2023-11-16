@@ -8,6 +8,7 @@ from kaping.evaluate import Evaluate
 import argparse
 import logging
 import os
+import random
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500):
@@ -30,10 +31,18 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
     kaping = KAPING()
     dspy_dataset = []
 
-    for data in dataset.data[:num_test]:
+    seed_value = 40
+
+    min_value = 0
+    max_value = 500
+
+    random.seed(seed_value)
+    random_indexes = random.sample(range(min_value, max_value + 1), num_test)
+
+    for i in random_indexes:
+        data = dataset.data[i]
         dspy_dataset.append(Example({'question':data.question, 'answer':[a.name if hasattr(a, 'name') else a for a in data.answers]}))
     dspy_dataset = [x.with_inputs('question') for x in dspy_dataset]
-   
 
     # 3. Evaluate the results
     # logging.info(f"Evaluate the results")
