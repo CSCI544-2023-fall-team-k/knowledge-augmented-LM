@@ -16,6 +16,7 @@ rdflib-shim = "^1.0.3"
 en_core_web_md = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.7.0/en_core_web_md-3.7.0.tar.gz"}
 spacy-entity-linker = "^1.0.3"
 dspy-ai = "^2.0.4"
+ipython = "^8.17.2"
 
 [tool.poetry.dev-dependencies]
 

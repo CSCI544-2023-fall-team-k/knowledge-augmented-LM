@@ -14,6 +14,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dsp.utils import EM, F1, HotPotF1
 from dsp.evaluation.utils import *
 
+import dspy
+from src.settings import Config
+from .modules import EvaluateAnswer
 
 class Evaluate:
     def __init__(self, *, devset, outfile, metric=None, num_threads=1, display_progress=False, display=True, max_errors=5):
@@ -26,6 +29,20 @@ class Evaluate:
         self.max_errors = max_errors
         self.error_count = 0
         self.error_lock = threading.Lock()
+
+        # Double-check data with "False" answer using the language models
+        lm = dspy.OpenAI(model=Config.OPENAI_MODEL_NAME, api_key=Config.OPENAI_API_KEY, temperature=0.0, request_timeout=60)
+        dspy.settings.configure(lm=lm)
+        self.evaluate_answer = dspy.Predict(EvaluateAnswer)
+
+    def _evaluate_using_lm(self, row):
+        matching_result = row["exact_matching"]
+        if matching_result is True:
+            return matching_result
+        
+        target_string = ", ".join(row["example_answer"]) if isinstance(row["example_answer"], list) else row["example_answer"]
+        answer =  self.evaluate_answer(target=target_string, predicted=row["pred_answer"]).answer.lower() == "true"
+        return answer
 
     def _execute_single_thread(self, wrapped_program, devset, display_progress):
         ncorrect = 0
@@ -125,6 +142,10 @@ class Evaluate:
         # Rename the 'correct' column to the name of the metric function
         metric_name = metric.__name__
         df.rename(columns={'correct': metric_name}, inplace=True)
+        df.to_csv(self.outfile)
+
+        # Add LM evaluated result field
+        df['lm_evaluation'] = df.apply(self._evaluate_using_lm, axis=1)
         df.to_csv(self.outfile)
                 
         if return_all_scores:
