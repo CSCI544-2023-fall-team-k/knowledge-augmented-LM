@@ -1,0 +1,11 @@
+,question,example_answer,pred_answer,exact_matching,lm_evaluation
+0,What state in the university of rockies which has the stegosaurus as an offical symbol located in?,"['Colorado', 'Centennial State', 'Colo', 'CO']",Colorado,True,True
+1,Which country affected by Hurricane Irene has the largest army?,"['Dominican Republic', 'República Dominicana']",United States,False,False
+2,In which Countries is the Al Ahram Beverages Co. Stella beer brewed?,"['Israel', 'State of Israel', 'Libya', 'Sudan', 'North Sudan', 'Republic of the Sudan', 'Jumhūrīyat as-Sūdān']",Al Ahram Beverages Co. breweries in Egypt.,False,False
+3,What college was attended by the most known alumnus of State elementary school Menteng 1?,"['Columbia University', 'Columbia University, New York City', 'Columbia U', 'Columbia', 'Columbia University, main campus', 'CU']",Harvard,False,False
+4,"Where did the subject of the image ""Matt Barnes Lakers"" play?","['Los Angeles Clippers', 'Clippersi', 'Lob City', 'San Diego Clippers', 'Los Angeles Lakers', 'Lakeshow', 'LA Lakers', 'Showtime', 'Lakers', 'The Lakers', 'Minneapolis Lakers']",Memphis Grizzlies,False,False
+5,What form of government is used both in Spain and in the birthplace of AntÃ£o Martins Homem?,"['Monarchy', 'Kingdom']",parliamentary monarchy,False,True
+6,Who plays Adolph Rupp and is also the father of Angelina Jolie?,"['Jon Voight', 'Jonathan Vincent Voight', 'Jonathan Vincent ""Jon"" Voight', 'John Voight']",Jon Voight,True,True
+7,What area speaks portugese and was once ruled by Philip III of Spain?,"['Portugal', 'Portuguese Republic']",Azores,False,False
+8,Which Chicago venues have a capacity greater than 2344?,"['Wrigley Field', 'Wrigley Field, Chicago', 'The Friendly Confines']",Unknown,False,False
+9,What movie that is 100 minutes long did Nick Cannon star in?,"[""Love Don't Cost a Thing"", ""Can't Buy Me Love"", ""Love Don't Co$t a Thing"", 'If You Were My Girl']",Unknown,False,False

@@ -41,7 +41,7 @@ class Evaluate:
             return matching_result
         
         target_string = ", ".join(row["example_answer"]) if isinstance(row["example_answer"], list) else row["example_answer"]
-        answer =  self.evaluate_answer(target=target_string, predicted=row["pred_answer"]).answer.lower() == "true"
+        answer = self.evaluate_answer(target=target_string, predicted=row["pred_answer"]).answer.lower() == "true"
         return answer
 
     def _execute_single_thread(self, wrapped_program, devset, display_progress):
