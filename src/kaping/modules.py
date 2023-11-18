@@ -9,7 +9,8 @@ class GenerateAnswer(dspy.Signature):
 
 
 class EvaluateAnswer(dspy.Signature):
-    """Given a list of target phrases and a predicted phrase, say "True" if the predicted phrase is semantically identical to one of the target phrases, otherwise say "False"."""
+    """Given a list of target phrases and a predicted phrase, say "True" if the predicted phrase is semantically identical to one of the target phrases, otherwise say "False".
+    Say also "True" if the predicted one is a hypernym or hyponym of targets."""
 
     target = dspy.InputField(desc="list of target phrases")
     predicted = dspy.InputField(desc="predicted phrase")
