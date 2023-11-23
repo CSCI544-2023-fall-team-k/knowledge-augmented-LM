@@ -2,6 +2,7 @@ from kaping import KAPING
 from src.dataset import WebQSP
 from src.dataset import Mintaka
 from src.dataset import ComplexWebQ
+from src.dataset import MetaQA
 from kaping.metrics import exact_matching
 from dspy.primitives import Example
 from kaping.evaluate import Evaluate
@@ -22,8 +23,17 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
     elif data.lower() == "ComplexWebQ".lower():
         dataset = ComplexWebQ(path="resources/ComplexWebQuestions/ComplexWebQuestions_train.json")
         logging.info(f"data = ComplexWebQ")
+    elif data.lower() == "MetaQA_1-hop".lower():
+        dataset = MetaQA(path="resources/MetaQA/vanilla_1-hop/qa_test.txt")
+        logging.info(f"data = MetaQA_1-hop")
+    elif data.lower() == "MetaQA_2-hop".lower():
+        dataset = MetaQA(path="resources/MetaQA/vanilla_2-hop/qa_test.txt")
+        logging.info(f"data = MetaQA_2-hop")
+    elif data.lower() == "MetaQA_3-hop".lower():
+        dataset = MetaQA(path="resources/MetaQA/vanilla_3-hop/qa_test.txt")
+        logging.info(f"data = MetaQA_3-hop")
     else:
-        logging.info(f"Wrong data! It should be 'WebQSP', 'mintaka', or 'ComplexWebQ'.")
+        logging.info(f"Wrong data! It should be one of them. - 'WebQSP', 'mintaka', 'ComplexWebQ', 'MetaQA_1-hop', 'MetaQA_2-hop', 'MetaQA_3-hop'")
         return
         
     logging.info(f"Num questions: {len(dataset.data)}")
@@ -47,10 +57,21 @@ def main(data: str, outfile: str = "evaluation_result.csv", num_test: int = 500)
 
 if __name__ == '__main__':    
     parser = argparse.ArgumentParser(prog='Knowledge Augmented Language Model')
-    parser.add_argument("--data", choices=['WebQSP', 'mintaka', 'ComplexWebQ'], default='WebQSP')
+    parser.add_argument("--data", choices=['WebQSP', 'mintaka', 'ComplexWebQ', 'MetaQA_1-hop', 'MetaQA_2-hop', 'MetaQA_3-hop'], default='ComplexWebQ')
     parser.add_argument("--outfile", type=str, default="evaluation_result.csv")
     parser.add_argument("--num_test", type=int, default=10)
 
+    ####################
+    logger = logging.getLogger('my_logger')
+    logger.setLevel(logging.DEBUG)
+
+    file_handler = logging.FileHandler('logfile.log')
+    stream_handler = logging.StreamHandler()
+
+    logger.addHandler(file_handler)
+    logger.addHandler(stream_handler)
+    ####################
+
     args = parser.parse_args()
-    #logging.root.setLevel(logging.INFO)
+    logging.root.setLevel(logging.INFO)
     main(args.data, args.outfile, args.num_test)
