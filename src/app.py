@@ -61,17 +61,6 @@ if __name__ == '__main__':
     parser.add_argument("--outfile", type=str, default="evaluation_result.csv")
     parser.add_argument("--num_test", type=int, default=10)
 
-    ####################
-    logger = logging.getLogger('my_logger')
-    logger.setLevel(logging.DEBUG)
-
-    file_handler = logging.FileHandler('logfile.log')
-    stream_handler = logging.StreamHandler()
-
-    logger.addHandler(file_handler)
-    logger.addHandler(stream_handler)
-    ####################
-
     args = parser.parse_args()
     logging.root.setLevel(logging.INFO)
     main(args.data, args.outfile, args.num_test)

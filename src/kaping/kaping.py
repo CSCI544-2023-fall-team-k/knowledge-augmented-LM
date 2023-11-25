@@ -26,7 +26,7 @@ class KAPING(dspy.Module):
         logging.info(f"Entities: {entities}")
         # 2. Triple Extraction: Extract triples connected to each entity.
         matched_triples: List[Triple] = self.kg.query(entities)
-        logging.info(f"Matched triples: {self._verbalize(matched_triples)}")
+        #logging.info(f"Matched triples: {self._verbalize(matched_triples)}")
         # 3. Candidate Retrieval: Retrieve top-k candidates from the extracted triples using semantic similarity between the question
         candidates = self._verbalize(matched_triples)
         retrieved_triples = self.retriever.retrieve(query=question, candidates=candidates)
